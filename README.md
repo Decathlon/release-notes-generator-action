@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/Decathlon/release-notes-generator-action.svg?style=svg)](https://circleci.com/gh/Decathlon/release-notes-generator-action)
+
 # release-notes-generator-action
 GitHub Action to create an auto release note when Milestone is closed.
 
