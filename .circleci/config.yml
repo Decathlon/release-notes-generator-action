@@ -2,7 +2,7 @@ version: 2
     jobs:
       build:
         environment:
-          IMAGE_NAME: decathlon/release-notes-generator-action
+          IMAGE_NAME: decathlonoss/release-notes-generator-action
         docker:
           - image: circleci/buildpack-deps:stretch
         steps:
@@ -13,7 +13,7 @@ version: 2
               command: docker build -t $IMAGE_NAME:latest .
       publish-latest:
         environment:
-          IMAGE_NAME: decathlon/release-notes-generator-action
+          IMAGE_NAME: decathlonoss/release-notes-generator-action
         docker:
           - image: circleci/buildpack-deps:stretch
         steps:
