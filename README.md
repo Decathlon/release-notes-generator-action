@@ -4,6 +4,7 @@ GitHub Action to create an auto release note when Milestone is closed.
 The action is using the [Spring.io release-notes generator](https://github.com/spring-io/github-release-notes-generator) to create a wonderful automatic release note.
 
 ![SampleReleaseNotes](images/release_notes.png)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FDecathlon%2Frelease-notes-generator-action.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FDecathlon%2Frelease-notes-generator-action?ref=badge_shield)
 
 ## Why?
 
@@ -114,3 +115,7 @@ The idea is to keep the control about what to do with the release notes file. So
 
 Personally, in some of our projects, we are pushing the release note as new GitHub wiki page using the [Wiki page creator action](https://github.com/Decathlon/wiki-page-creator-action).
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FDecathlon%2Frelease-notes-generator-action.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FDecathlon%2Frelease-notes-generator-action?ref=badge_large)
