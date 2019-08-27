@@ -1,0 +1,12 @@
+- regExp: ".*\\.ts+$"
+  labels: ["typescript"]
+- regExp: ".*\\.sql+$"
+  labels: ["database", "critical"]
+- regExp: ".*\\.md+$"
+  labels: ["documentation"]
+- regExp: ".*\\.png+$"
+  labels: ["images"]
+- regExp: "^(pom\\.xml|package\\.json|build\\.gradle)$"
+  labels: ["dependencies"]
+- regExp: ".*\\.(zip|jar|war|ear)+$"
+  labels: ["artifact", "invalid"]
