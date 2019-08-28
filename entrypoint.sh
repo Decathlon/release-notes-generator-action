@@ -1,6 +1,16 @@
 #!/bin/sh
 set -e
 
+printf '\033[0;34m
+Open sourced by
+██████╗ ███████╗ ██████╗ █████╗ ████████╗██╗  ██╗██╗      ██████╗ ███╗   ██╗
+██╔══██╗██╔════╝██╔════╝██╔══██╗╚══██╔══╝██║  ██║██║     ██╔═══██╗████╗  ██║
+██║  ██║█████╗  ██║     ███████║   ██║   ███████║██║     ██║   ██║██╔██╗ ██║
+██║  ██║██╔══╝  ██║     ██╔══██║   ██║   ██╔══██║██║     ██║   ██║██║╚██╗██║
+██████╔╝███████╗╚██████╗██║  ██║   ██║   ██║  ██║███████╗╚██████╔╝██║ ╚████║
+╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝
+\033[0m'
+
 TRIGGER_ACTION="closed"
 
 echo "Getting Action Information"
@@ -9,6 +19,7 @@ MILESTONE_NUMBER=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["milestone","numb
 REPOSITORY_NAME=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["repository","name"]' | cut -f2 | sed 's/\"//g')
 OWNER_ID=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["repository","owner","login"]' | cut -f2 | sed 's/\"//g')
 GH_USERNAME=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["sender","login"]' | cut -f2 | sed 's/\"//g')
+
 
 #Check if Milestone exists, which means actions was raised by a milestone operation.
 if [[ -z "$MILESTONE_NUMBER" ]]; then
@@ -32,7 +43,7 @@ fi
 if [ -z "$OUTPUT_FOLDER" ]; then
   echo "OUTPUT_FOLDER ENV is missing, using the default one"
   OUTPUT_FOLDER='.'
-else 
+else
   mkdir $OUTPUT_FOLDER
 fi
 
