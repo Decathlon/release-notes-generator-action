@@ -1,0 +1,13 @@
+on: pull_request
+name: Auto Label Pull Request
+jobs:
+  pRLabelByFiles:
+    name: PR label by Files
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+    - name: PR label by Files
+      uses: docker://decathlon/pull-request-labeler-action:2.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CONFIG_PATH: ${{ secrets.GITHUB_WORKSPACE }}/.github/label-pr.yml
