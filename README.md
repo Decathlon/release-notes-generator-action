@@ -29,9 +29,9 @@
 
 ## Common usage
 
-Each time a milestone will be closed, this GitHub action will scan closed issues/PR attached to the milestone, and then, create automatically a wonderful release note.  
+Each time a milestone is closed, this GitHub action scans its attached issues and pull request, and automatically generates a wonderful release note.  
 
-_The action is using the [Spring.io release-notes generator](https://github.com/spring-io/github-release-notes-generator) tool._
+_The action uses [Spring.io release-notes generator](https://github.com/spring-io/github-release-notes-generator) tool._
 
 <p align="center">
   <img src="https://github.com/Decathlon/release-notes-generator-action/raw/master/images/release_notes.png" alt="Result illustration"/>
@@ -39,14 +39,14 @@ _The action is using the [Spring.io release-notes generator](https://github.com/
 
 ## Why?
 
-Why we are not simply automating the release creation and push the release notes there?  
-We think in some cases it is better to keep release notes separated from the release process... yeah, maybe the right name is not release notes anymore. :) Taking as example a continuous deployment project: __anytime you are pushing to the repository a new version of the application is built and pushed in production.__ Ahd so, a new release is created to complete the process; a release with a **single** function inside.  
-We think it is not a good idea to push to your 'application users' a new release notes message anytime you're pushing (let us say 10 times a day?).  
-In this such of projects we prefer to communicate only once a Sprint (or with the time split you prefer), which gave you a bigger release notes containing the information pushed in production with the latest 30/40 releases.
+Why aren't we simply automating the release creation and push the release notes there?  
+We think in some cases it is better to keep release notes separated from the release process... yeah, maybe the right name is not release notes anymore. :) Taking as example a continuous deployment project: __anytime you push to the repository, a new version of the application is built and pushed in production.__ And so, a new release is created to complete the process; a release with a **single** feature inside.  
+We think it is not a good idea to push to 'users' a new release notes message every time you generate a changes in the source code (let us say 10 times a day?).  
+It may be a better way to communicate only once every week or once the sprint is over, which gives you a clearer and complete release notes containing the aggregated information pushed in production within the last sprint (or any days).
 
 ## Breaking change
 
-Starting from August 2019, GitHub switch [Actions syntax from HCL to YAML](https://help.github.com/en/articles/migrating-github-actions-from-hcl-syntax-to-yaml-syntax).  
+Starting from August 2019, GitHub team switch [Actions syntax from HCL to YAML](https://help.github.com/en/articles/migrating-github-actions-from-hcl-syntax-to-yaml-syntax).  
 The previous syntax will no longer be supported by GitHub on September 30, 2019.
 
 As a consequence, __please use v2.0.0+__ release and note that __all v1.x.x are deprecated__ and will no longer work on September 30, 2019.
