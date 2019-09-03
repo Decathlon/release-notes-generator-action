@@ -74,7 +74,7 @@ action "Create Release Notes" {
 
 #### Settings for v2.0.0+ release
 
-Create a file into your root project directory: `.github/workflows/labeler.yml`:
+Create a file into your root project directory: `.github/workflows/release-notes.yml`:
 ```yaml
 # Trigger the workflow on milestone events
 on: milestone
