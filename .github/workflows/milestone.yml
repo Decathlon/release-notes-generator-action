@@ -1,5 +1,6 @@
-on: milestone
-  types: [closed]
+on: 
+  milestone:
+    types: [closed]
 name: Milestone Closure
 jobs:
   create-release:
