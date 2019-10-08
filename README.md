@@ -77,8 +77,9 @@ action "Create Release Notes" {
 Create a file into your root project directory: `.github/workflows/release-notes.yml`:
 ```yaml
 # Trigger the workflow on milestone events
-on: milestone
-  types: [closed]
+on: 
+  milestone:
+    types: [closed]
 name: Milestone Closure
 jobs:
   create-release-notes:
