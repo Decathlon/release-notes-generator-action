@@ -12,7 +12,7 @@
   - [Why?](#why)
   - [Breaking change](#breaking-change)
   - [Startup](#startup)
-    - [Use Github action](#use-github-action)
+    - [Use GitHub action](#use-github-action)
       - [Settings for v1.0.0+ release (deprecated)](#settings-for-v100-release-deprecated)
       - [Settings for v2.0.0+ release](#settings-for-v200-release)
       - [NOTE](#note)
@@ -54,7 +54,7 @@ As a consequence, __please use v2.0.0+__ release and note that __all v1.x.x are 
 
 ## Startup
 
-### Use Github action
+### Use GitHub action
 
 #### Settings for v1.0.0+ release (deprecated)
 
