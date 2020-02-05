@@ -10,19 +10,15 @@
 **Table of Contents**
   - [Common usage](#common-usage)
   - [Why?](#why)
-  - [Breaking change](#breaking-change)
   - [Startup](#startup)
     - [Use Github action](#use-github-action)
-      - [Settings for v1.0.0+ release (deprecated)](#settings-for-v100-release-deprecated)
       - [Settings for v2.0.0+ release](#settings-for-v200-release)
       - [NOTE](#note)
       - [Result illustration](#result-illustration)
     - [Configure output folder](#configure-output-folder)
     - [Custom output release file](#custom-output-release-file)
-      - [Prefixed name using v1.0.0+](#prefixed-name-using-v100)
       - [Prefixed name using v2.0.0+](#prefixed-name-using-v200)
     - [Use Milestone title](#use-milestone-title)
-      - [Prefixed name using v1.0.0+](#prefixed-name-using-v100-1)
       - [Prefixed name using v2.0.0+](#prefixed-name-using-v200-1)
       - [Result illustration](#result-illustration-1)
   - [How to use the generated file](#how-to-use-the-generated-file)
@@ -44,33 +40,9 @@ We think in some cases it is better to keep release notes separated from the rel
 We think it is not a good idea to push to 'users' a new release notes message every time you generate a changes in the source code (let us say 10 times a day?).  
 It may be a better way to communicate only once every week or once the sprint is over, which gives you a clearer and complete release notes containing the aggregated information pushed in production within the last sprint (or any days).
 
-## Breaking change
-
-Starting from August 2019, GitHub team switch [Actions syntax from HCL to YAML](https://help.github.com/en/articles/migrating-github-actions-from-hcl-syntax-to-yaml-syntax).  
-The previous syntax will no longer be supported by GitHub on September 30, 2019.
-
-As a consequence, __please use v2.0.0+__ release and note that __all v1.x.x are deprecated__ and will no longer work on September 30, 2019.
-
-
 ## Startup
 
 ### Use Github action
-
-#### Settings for v1.0.0+ release (deprecated)
-
-The usage is really simple, you just need to add the Action reference in your GitHub workflow.
-
-```
-workflow "On Milestone" {
-  on = "milestone"
-  resolves = ["Create Release Notes"]
-}
-
-action "Create Release Notes" {
-  uses = "Decathlon/release-notes-generator-action@master"
-  secrets = ["GITHUB_TOKEN"]
-}
-```
 
 #### Settings for v2.0.0+ release
 
@@ -87,7 +59,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Create Release Notes
-      uses: docker://decathlon/release-notes-generator-action:2.0.0
+      uses: docker://decathlon/release-notes-generator-action:2.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         OUTPUT_FOLDER: temp_release_notes
@@ -146,23 +118,10 @@ By default the release file is created into the Docker home folder. If you want 
 ### Custom output release file
 By default the output is created into *release_file.md* file. You can control the output name using environment variables in your action.
 
-#### Prefixed name using v1.0.0+
-Providing the `FILENAME_PREFIX` environment variable, you can control the output file name which will have the provided prefix name with the milestone id.
-
-```
-action "Create Release Notes" {
-  uses = "docker://decathlon/release-notes-generator-action:1.0.0"
-  secrets = ["GITHUB_TOKEN"]
-  env = {
-    FILENAME_PREFIX = "MyMilestone"
-  }
-}
-```
-
 #### Prefixed name using v2.0.0+
 ```YAML
 - name: Create Release Notes
-  uses: docker://decathlon/release-notes-generator-action:2.0.0
+  uses: docker://decathlon/release-notes-generator-action:2.0.1
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     FILENAME_PREFIX: MyMilestone
@@ -174,23 +133,11 @@ The output filename will be `MyMilestone_2` (if the milestone id is 2).
 Providing the `USE_MILESTONE_TITLE` environment variable which allow you to switch the name to the Milestone title instead of providing a *static* one.
 The title will be modified replacing spaces with underscore '_' char.
 
-#### Prefixed name using v1.0.0+
-
-```
-action "Create Release Notes" {
-  uses = "Decathlon/release-notes-generator-action@master"
-  secrets = ["GITHUB_TOKEN"]
-  env = {
-    USE_MILESTONE_TITLE = true
-  }
-}
-```
-
 #### Prefixed name using v2.0.0+
 
 ```YAML
 - name: Create Release Notes
-  uses: docker://decathlon/release-notes-generator-action:2.0.0
+  uses: docker://decathlon/release-notes-generator-action:2.0.1
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     USE_MILESTONE_TITLE: "true"
