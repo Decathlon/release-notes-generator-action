@@ -11,7 +11,7 @@
   - [Common usage](#common-usage)
   - [Why?](#why)
   - [Startup](#startup)
-    - [Use Github action](#use-github-action)
+    - [Use GitHub action](#use-github-action)
       - [Settings for v2.0.0+ release](#settings-for-v200-release)
       - [NOTE](#note)
       - [Result illustration](#result-illustration)
@@ -42,7 +42,7 @@ It may be a better way to communicate only once every week or once the sprint is
 
 ## Startup
 
-### Use Github action
+### Use GitHub action
 
 #### Settings for v2.0.0+ release
 
