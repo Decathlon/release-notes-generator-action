@@ -47,10 +47,13 @@ else
   mkdir $OUTPUT_FOLDER
 fi
 
+echo "Checking for custom configuration..."
 CONFIG_FILE=".github/release-notes.yml"
 if [[ ! -f ${CONFIG_FILE} ]]; then
     echo "No config file specified."
     CONFIG_FILE=""
+else
+    echo "Configuring the action using $CONFIG_FILE"
 fi
 
 if [[ "$ACTION" == "$TRIGGER_ACTION" ]]; then
