@@ -1,13 +1,9 @@
 name: Release notes generator
 author: Decathlon <developers@decathlon.com>
 description: This Github action <strong>automatically creates a release notes</strong> when a milestone is closed.
-Each time a milestone is closed, this GitHub action scans its attached issues and pull requests, then automatically generates a wonderful release note.
-<p align="center">
-<img src="https://github.com/Decathlon/release-notes-generator-action/raw/master/images/release_notes.png" alt="Example illustration"/>
-</p>
 runs:
   using: 'docker'
-  image: 'docker://decathlon/release-notes-generator-action:2.0.1'
+  image: 'docker://decathlon/release-notes-generator-action:2.1.0'
 branding:
   icon: tag
   color: blue

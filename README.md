@@ -151,6 +151,21 @@ Creating release notes for Milestone 1 into the Sprint_10.md file
 ### SUCCEEDED Create Release Notes 15:53:53Z (15.913s)
 ```
 
+## Section configuration
+You can manage the sections and how they are used by the release generator, creating the `.github/release-notes.yml` file in the repository where you activate the action.
+An example of file content (you can find detaild information direactly on the [Spring repository](https://github.com/spring-io/github-release-notes-generator))
+```
+releasenotes:
+  sections:
+  - title: "Enhancements"
+    emoji: ":star:"
+    labels: ["new"]
+  - title: "Bugs"
+    emoji: ":beetle:"
+    labels: ["fix"]
+```
+In the sections list you can configure each seaction with an emoji and a list of labels to take care of for this section.
+
 ## How to use the generated file
 The idea is to keep the control about what to do with the release notes file.  
 So simply link a new action and: send it by mail, push it on your website, on the github wiki, ...

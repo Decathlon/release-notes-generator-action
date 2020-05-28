@@ -47,6 +47,15 @@ else
   mkdir $OUTPUT_FOLDER
 fi
 
+echo "Checking for custom configuration..."
+CONFIG_FILE=".github/release-notes.yml"
+if [[ ! -f ${CONFIG_FILE} ]]; then
+    echo "No config file specified."
+    CONFIG_FILE=""
+else
+    echo "Configuring the action using $CONFIG_FILE"
+fi
+
 if [[ "$ACTION" == "$TRIGGER_ACTION" ]]; then
     echo "Creating release notes for Milestone $MILESTONE_NUMBER into the $OUTPUT_FILENAME file"
     java -jar /github-release-notes-generator.jar \
@@ -54,6 +63,7 @@ if [[ "$ACTION" == "$TRIGGER_ACTION" ]]; then
     --releasenotes.github.repository=${REPOSITORY_NAME} \
     --releasenotes.github.username=${GH_USERNAME} \
     --releasenotes.github.password=${GITHUB_TOKEN} \
+    --spring.config.location=${CONFIG_FILE} \
     ${MILESTONE_NUMBER} \
     ${OUTPUT_FOLDER}/${OUTPUT_FILENAME}
     cat ${OUTPUT_FOLDER}/${OUTPUT_FILENAME}

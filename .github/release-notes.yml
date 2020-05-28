@@ -1,0 +1,9 @@
+releasenotes:
+    sections:
+    - title: "Enhancements"
+        emoji: ":star:"
+        labels: ["new"]
+    - title: "Bugs"
+        emoji: ":beetle:"
+        labels: ["fix"]
+  
