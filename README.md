@@ -27,7 +27,7 @@
 
 Each time a milestone is closed, this GitHub action scans its attached issues and pull request, and automatically generates a wonderful release note.  
 
-_The action uses [Spring.io release-notes generator](https://github.com/spring-io/github-release-notes-generator) tool._
+_The action uses [Spring.io changelog generator](https://github.com/spring-io/github-changelog-generator) tool._
 
 <p align="center">
   <img src="https://github.com/Decathlon/release-notes-generator-action/raw/master/images/release_notes.png" alt="Result illustration"/>
