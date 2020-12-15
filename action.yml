@@ -3,7 +3,7 @@ author: Decathlon <developers@decathlon.com>
 description: This Github action <strong>automatically creates a release notes</strong> when a milestone is closed.
 runs:
   using: 'docker'
-  image: 'docker://decathlon/release-notes-generator-action:2.1.0'
+  image: 'docker://decathlon/release-notes-generator-action:3.0.0'
 branding:
   icon: tag
   color: blue
