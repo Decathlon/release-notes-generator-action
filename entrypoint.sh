@@ -59,10 +59,9 @@ fi
 if [[ "$ACTION" == "$TRIGGER_ACTION" ]]; then
     echo "Creating release notes for Milestone $MILESTONE_NUMBER into the $OUTPUT_FILENAME file"
     java -jar /github-release-notes-generator.jar \
-    --releasenotes.github.organization=${OWNER_ID} \
-    --releasenotes.github.repository=${REPOSITORY_NAME} \
-    --releasenotes.github.username=${GH_USERNAME} \
-    --releasenotes.github.password=${GITHUB_TOKEN} \
+    --changelog.repository=${REPOSITORY_NAME} \
+    --changelog.github.username=${GH_USERNAME} \
+    --changelog.github.password=${GITHUB_TOKEN} \
     --spring.config.location=${CONFIG_FILE} \
     ${MILESTONE_NUMBER} \
     ${OUTPUT_FOLDER}/${OUTPUT_FILENAME}
