@@ -62,6 +62,7 @@ if [[ "$ACTION" == "$TRIGGER_ACTION" ]]; then
     --changelog.repository=${OWNER_ID}/${REPOSITORY_NAME} \
     --changelog.github.username=${GH_USERNAME} \
     --changelog.github.password=${GITHUB_TOKEN} \
+    --changelog.milestone-reference=id \
     --spring.config.location=${CONFIG_FILE} \
     ${MILESTONE_NUMBER} \
     ${OUTPUT_FOLDER}/${OUTPUT_FILENAME}
