@@ -9,7 +9,7 @@ ENV RELEASE_NOTE_GENERATOR_VERSION="v0.0.5"
 
 COPY *.sh /
 RUN chmod +x JSON.sh && \
-    wget -O github-release-notes-generator.jar https://github.com/spring-io/github-release-notes-generator/releases/download/${RELEASE_NOTE_GENERATOR_VERSION}/github-release-notes-generator.jar
+    wget -O github-release-notes-generator.jar https://github.com/spring-io/github-changelog-generator/releases/download/${RELEASE_NOTE_GENERATOR_VERSION}/github-changelog-generator.jar
 
 COPY entrypoint.sh /
 
