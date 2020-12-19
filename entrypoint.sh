@@ -19,10 +19,13 @@ MILESTONE_NUMBER=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["milestone","numb
 REPOSITORY_NAME=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["repository","name"]' | cut -f2 | sed 's/\"//g')
 OWNER_ID=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["repository","owner","login"]' | cut -f2 | sed 's/\"//g')
 GH_USERNAME=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["sender","login"]' | cut -f2 | sed 's/\"//g')
+PROVIDED_MILESTONE_ID=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["inputs","milestoneId"]' | cut -f2 | sed 's/\"//g')
 
+MILESTONE_ID_TO_USE=${PROVIDED_MILESTONE_ID:-$MILESTONE_NUMBER}
+echo "Action running with milestone $MILESTONE_ID_TO_USE on event $GITHUB_EVENT_NAME and action $ACTION"
 
 #Check if Milestone exists, which means actions was raised by a milestone operation.
-if [[ -z "$MILESTONE_NUMBER" ]]; then
+if [[ -z "$MILESTONE_ID_TO_USE" ]]; then
     echo "Milestone number is missing. Was the action raised by a milestone event?"
     exit 1
 fi
@@ -56,7 +59,7 @@ else
     echo "Configuring the action using $CONFIG_FILE"
 fi
 
-if [[ "$ACTION" == "$TRIGGER_ACTION" ]]; then
+if [[ "workflow_dispatch" == "$GITHUB_EVENT_NAME" || "$ACTION" == "$TRIGGER_ACTION" ]]; then
     echo "Creating release notes for Milestone $MILESTONE_NUMBER into the $OUTPUT_FILENAME file"
     java -jar /github-release-notes-generator.jar \
     --changelog.repository=${OWNER_ID}/${REPOSITORY_NAME} \
@@ -64,7 +67,7 @@ if [[ "$ACTION" == "$TRIGGER_ACTION" ]]; then
     --changelog.github.password=${GITHUB_TOKEN} \
     --changelog.milestone-reference=id \
     --spring.config.location=${CONFIG_FILE} \
-    ${MILESTONE_NUMBER} \
+    ${MILESTONE_ID_TO_USE} \
     ${OUTPUT_FOLDER}/${OUTPUT_FILENAME}
     cat ${OUTPUT_FOLDER}/${OUTPUT_FILENAME}
 else
