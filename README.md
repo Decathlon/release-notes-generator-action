@@ -66,6 +66,23 @@ jobs:
         USE_MILESTONE_TITLE: "true"
 ```
 
+#### Settings for workflow_dispatch
+Since the release 3.1.0 the action supports to trigger it via the (GitHub workflow_dispatch)[https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/] allowing to manually trigger an action workflow.
+To use it you should add a dispatch configuration in your action, like the following.
+```yaml
+on:
+  milestone:
+    types: [closed]
+  workflow_dispatch:
+    inputs:
+      milestoneId:
+        description: 'Milestone ID'     
+        required: true
+        default: '1'
+```
+It is important to keep the `milestoneId` variable name which is used inside the Action itself.
+With the configuration in the example the action is triggered both for milestone closure and workflow_dispatch.
+
 #### NOTE
 It is important to add the *GITHUB_TOKEN* secret because the action needs to access to your repository Milestone/Issues information using the GitHub API.
 
