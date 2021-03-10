@@ -63,8 +63,8 @@ if [[ "workflow_dispatch" == "$GITHUB_EVENT_NAME" || "$ACTION" == "$TRIGGER_ACTI
     echo "Creating release notes for Milestone $MILESTONE_NUMBER into the $OUTPUT_FILENAME file"
     java -jar /github-release-notes-generator.jar \
     --changelog.repository=${OWNER_ID}/${REPOSITORY_NAME} \
-    --changelog.github.username=${GH_USERNAME} \
-    --changelog.github.password=${GITHUB_TOKEN} \
+    --github.username=${GH_USERNAME} \
+    --github.password=${GITHUB_TOKEN} \
     --changelog.milestone-reference=id \
     --spring.config.location=${CONFIG_FILE} \
     ${MILESTONE_ID_TO_USE} \
