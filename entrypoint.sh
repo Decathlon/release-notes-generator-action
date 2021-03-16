@@ -31,6 +31,12 @@ if [[ -z "$MILESTONE_ID_TO_USE" ]]; then
 fi
 
 OUTPUT_FILENAME="release_file.md"
+
+#Check if a filename is provided
+if [[ ! -z "$FILENAME" ]]; then
+    OUTPUT_FILENAME="$FILENAME.md"
+fi
+
 #Check if a filename prefix is provided
 if [[ ! -z "$FILENAME_PREFIX" ]]; then
     OUTPUT_FILENAME="$FILENAME_PREFIX$MILESTONE_NUMBER.md"
