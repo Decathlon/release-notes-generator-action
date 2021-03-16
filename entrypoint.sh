@@ -39,7 +39,11 @@ fi
 
 #Check if a filename prefix is provided
 if [[ ! -z "$FILENAME_PREFIX" ]]; then
+  if [[ ! -z "$FILENAME" ]]; then
+    OUTPUT_FILENAME="$FILENAME_PREFIX$FILENAME.md"
+  else
     OUTPUT_FILENAME="$FILENAME_PREFIX$MILESTONE_NUMBER.md"
+  fi
 fi
 
 #Check if we should use milestone title instead
