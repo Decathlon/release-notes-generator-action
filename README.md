@@ -155,12 +155,11 @@ The output filename will be `MyMilestone_2` (if the milestone id is 2).
     FILENAME: ProvidedFilename
 ```
 
-The output filename will be `ProvidedFilename.md`.
-This you can mix this with the `FILENAME_PREFIX` and will be overridden if you use the `USE_MILESTONE_TITLE` variable.
+The output filename will be `ProvidedFilename.md`. This can be mixed up with the `FILENAME_PREFIX`.
 
 ### Use Milestone title
 Providing the `USE_MILESTONE_TITLE` environment variable which allow you to switch the name to the Milestone title instead of providing a *static* one.
-The title will be modified replacing spaces with underscore '_' char.
+The title will be modified replacing spaces with underscore '_' char. This will be overridden by `FILENAME`.
 
 #### Prefixed name using v2.0.0+
 
