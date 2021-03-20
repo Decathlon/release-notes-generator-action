@@ -146,9 +146,20 @@ By default the output is created into *release_file.md* file. You can control th
 
 The output filename will be `MyMilestone_2` (if the milestone id is 2).
 
+#### Filename using v2.0.0+
+```YAML
+- name: Create Release Notes
+  uses: docker://decathlon/release-notes-generator-action:2.0.1
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    FILENAME: ProvidedFilename
+```
+
+The output filename will be `ProvidedFilename.md`. This can be mixed up with the `FILENAME_PREFIX`.
+
 ### Use Milestone title
 Providing the `USE_MILESTONE_TITLE` environment variable which allow you to switch the name to the Milestone title instead of providing a *static* one.
-The title will be modified replacing spaces with underscore '_' char.
+The title will be modified replacing spaces with underscore '_' char. This will be overridden by `FILENAME`.
 
 #### Prefixed name using v2.0.0+
 

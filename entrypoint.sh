@@ -31,15 +31,25 @@ if [[ -z "$MILESTONE_ID_TO_USE" ]]; then
 fi
 
 OUTPUT_FILENAME="release_file.md"
-#Check if a filename prefix is provided
-if [[ ! -z "$FILENAME_PREFIX" ]]; then
-    OUTPUT_FILENAME="$FILENAME_PREFIX$MILESTONE_NUMBER.md"
-fi
 
 #Check if we should use milestone title instead
-if [[ ! -z "$USE_MILESTONE_TITLE" ]]; then
+if [[ -z "$FILENAME" && ! -z "$USE_MILESTONE_TITLE" ]]; then
     MILESTONE_TITLE=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["milestone","title"]' | cut -f2 | sed 's/\"//g' | sed 's/ /_/g')
     OUTPUT_FILENAME="$MILESTONE_TITLE.md"
+fi
+
+#Check if a filename is provided
+if [[ ! -z "$FILENAME" ]]; then
+    OUTPUT_FILENAME="$FILENAME.md"
+fi
+
+#Check if a filename prefix is provided
+if [[ ! -z "$FILENAME_PREFIX" ]]; then
+  if [[ ! -z "$FILENAME" ]]; then
+    OUTPUT_FILENAME="$FILENAME_PREFIX$FILENAME.md"
+  else
+    OUTPUT_FILENAME="$FILENAME_PREFIX$MILESTONE_NUMBER.md"
+  fi
 fi
 
 #Output folder configuration
