@@ -57,7 +57,7 @@ if [ -z "$OUTPUT_FOLDER" ]; then
   echo "OUTPUT_FOLDER ENV is missing, using the default one"
   OUTPUT_FOLDER='.'
 else
-  mkdir $OUTPUT_FOLDER
+  mkdir -p $OUTPUT_FOLDER
 fi
 
 echo "Checking for custom configuration..."
