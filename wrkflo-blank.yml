@@ -1,0 +1,2 @@
+- name: Release notes generator
+  uses: Decathlon/release-notes-generator-action@v3.1.4
