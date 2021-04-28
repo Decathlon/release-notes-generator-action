@@ -15,13 +15,14 @@ TRIGGER_ACTION="closed"
 
 echo "Getting Action Information"
 ACTION=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["action"]' | cut -f2 | sed 's/\"//g')
-MILESTONE_NUMBER=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["milestone","number"]' | cut -f2)
+GH_EVENT_MILESTONE_NUMBER=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["milestone","number"]' | cut -f2)
 REPOSITORY_NAME=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["repository","name"]' | cut -f2 | sed 's/\"//g')
 OWNER_ID=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["repository","owner","login"]' | cut -f2 | sed 's/\"//g')
 GH_USERNAME=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["sender","login"]' | cut -f2 | sed 's/\"//g')
 PROVIDED_MILESTONE_ID=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["inputs","milestoneId"]' | cut -f2 | sed 's/\"//g')
 
-MILESTONE_ID_TO_USE=${PROVIDED_MILESTONE_ID:-$MILESTONE_NUMBER}
+MILESTONE_ID_TO_USE=${MILESTONE_NUMBER:-$PROVIDED_MILESTONE_ID}
+MILESTONE_ID_TO_USE=${MILESTONE_ID_TO_USE:-$GH_EVENT_MILESTONE_NUMBER}
 echo "Action running with milestone $MILESTONE_ID_TO_USE on event $GITHUB_EVENT_NAME and action $ACTION"
 
 #Check if Milestone exists, which means actions was raised by a milestone operation.
@@ -48,7 +49,7 @@ if [[ ! -z "$FILENAME_PREFIX" ]]; then
   if [[ ! -z "$FILENAME" ]]; then
     OUTPUT_FILENAME="$FILENAME_PREFIX$FILENAME.md"
   else
-    OUTPUT_FILENAME="$FILENAME_PREFIX$MILESTONE_NUMBER.md"
+    OUTPUT_FILENAME="$FILENAME_PREFIX$MILESTONE_ID_TO_USE.md"
   fi
 fi
 
@@ -70,7 +71,7 @@ else
 fi
 
 if [[ "workflow_dispatch" == "$GITHUB_EVENT_NAME" || "$ACTION" == "$TRIGGER_ACTION" ]]; then
-    echo "Creating release notes for Milestone $MILESTONE_NUMBER into the $OUTPUT_FILENAME file"
+    echo "Creating release notes for Milestone $MILESTONE_ID_TO_USE into the $OUTPUT_FILENAME file"
     java -jar /github-release-notes-generator.jar \
     --changelog.repository=${OWNER_ID}/${REPOSITORY_NAME} \
     --github.username=${GH_USERNAME} \
