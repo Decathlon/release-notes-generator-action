@@ -5,7 +5,7 @@ LABEL "com.github.actions.description"="Create a release notes of milestone"
 LABEL "com.github.actions.icon"="pocket"
 LABEL "com.github.actions.color"="blue"
 
-ENV RELEASE_NOTE_GENERATOR_VERSION="v0.0.6"
+ENV RELEASE_NOTE_GENERATOR_VERSION="v0.0.7"
 
 COPY *.sh /
 RUN chmod +x JSON.sh && \
