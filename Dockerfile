@@ -1,4 +1,4 @@
-FROM openjdk:8-alpine
+FROM eclipse-temurin:11-alpine
 LABEL "maintainer"="Decathlon <developers@decathlon.com>"
 LABEL "com.github.actions.name"="release-notes-generator-action"
 LABEL "com.github.actions.description"="Create a release notes of milestone"
