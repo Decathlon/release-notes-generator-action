@@ -1,11 +1,11 @@
-FROM eclipse-temurin:11-alpine
+FROM eclipse-temurin:17-alpine
 LABEL "maintainer"="Decathlon <developers@decathlon.com>"
 LABEL "com.github.actions.name"="release-notes-generator-action"
 LABEL "com.github.actions.description"="Create a release notes of milestone"
 LABEL "com.github.actions.icon"="pocket"
 LABEL "com.github.actions.color"="blue"
 
-ENV RELEASE_NOTE_GENERATOR_VERSION="v0.0.8"
+ENV RELEASE_NOTE_GENERATOR_VERSION="v0.0.13"
 
 COPY *.sh /
 RUN chmod +x JSON.sh && \
