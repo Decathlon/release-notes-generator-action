@@ -58,7 +58,7 @@ if [ -z "$OUTPUT_FOLDER" ]; then
   echo "OUTPUT_FOLDER ENV is missing, using the default one"
   OUTPUT_FOLDER='.'
 else
-  mkdir -p $OUTPUT_FOLDER
+  mkdir -p "$OUTPUT_FOLDER"
 fi
 
 echo "Checking for custom configuration..."
@@ -78,9 +78,9 @@ if [[ "workflow_dispatch" == "$GITHUB_EVENT_NAME" || "$ACTION" == "$TRIGGER_ACTI
     --github.password=${GITHUB_TOKEN} \
     --changelog.milestone-reference=id \
     --spring.config.location=${CONFIG_FILE} \
-    ${MILESTONE_ID_TO_USE} \
-    ${OUTPUT_FOLDER}/${OUTPUT_FILENAME}
-    cat ${OUTPUT_FOLDER}/${OUTPUT_FILENAME}
+    "${MILESTONE_ID_TO_USE}" \
+    "${OUTPUT_FOLDER}/${OUTPUT_FILENAME}"
+    cat "${OUTPUT_FOLDER}/${OUTPUT_FILENAME}"
 else
     echo "Release notes generation skipped because action was: $ACTION"
     exit 78
