@@ -2,8 +2,13 @@
 # Exercise the action entrypoint without Docker, a JVM, network access or credentials.
 set -eu
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
-TMP=$(mktemp -d "${TMPDIR:-/tmp}/release-notes-test.XXXXXX")
-trap 'rm -rf "$TMP"' EXIT HUP INT TERM
+if [ -n "${TEST_TMP_DIR:-}" ]; then
+    TMP=$TEST_TMP_DIR
+    mkdir "$TMP"
+else
+    TMP=$(mktemp -d "${TMPDIR:-/tmp}/release-notes-test.XXXXXX")
+    trap 'rm -rf "$TMP"' EXIT HUP INT TERM
+fi
 mkdir -p "$TMP/bin" "$TMP/home"
 # Only relocate the container's JSON parser; all entrypoint logic is unchanged.
 sed "s|/JSON.sh|$ROOT/JSON.sh|g" "$ROOT/entrypoint.sh" > "$TMP/entrypoint.sh"
@@ -38,7 +43,7 @@ run() {
         env -i HOME="$TMP/home" PATH="$TMP/bin:/usr/bin:/bin" \
             GITHUB_EVENT_NAME="$event" GITHUB_EVENT_PATH="$TMP/$payload.json" \
             GITHUB_TOKEN=fixture-not-a-token ARGS="$TMP/$name/args" \
-            "$@" sh "$TMP/entrypoint.sh"
+            "$@" bash "$TMP/entrypoint.sh"
     ) > "$TMP/$name/log" 2>&1 || {
         result=$?
         printf '%s: exit %s\n' "$name" "$result" >&2
