@@ -67,7 +67,7 @@ jobs:
 ```
 
 #### Settings for workflow_dispatch
-Since the release 3.1.0 the action supports to trigger it via the (GitHub workflow_dispatch)[https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/] allowing to manually trigger an action workflow.
+Since the release 3.1.0 the action supports to trigger it via the [GitHub workflow_dispatch](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/) allowing to manually trigger an action workflow.
 To use it you should add a dispatch configuration in your action, like the following.
 ```yaml
 on:
@@ -144,12 +144,12 @@ By default the output is created into *release_file.md* file. You can control th
     FILENAME_PREFIX: MyMilestone
 ```
 
-The output filename will be `MyMilestone_2` (if the milestone id is 2).
+The output filename will be `MyMilestone2.md` (if the milestone id is 2). To add a separator, include it in `FILENAME_PREFIX`, for example `MyMilestone_`.
 
-#### Filename using v2.0.0+
+#### Filename using v3.1.4+
 ```YAML
 - name: Create Release Notes
-  uses: docker://decathlon/release-notes-generator-action:2.0.1
+  uses: docker://decathlon/release-notes-generator-action:3.1.4
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     FILENAME: ProvidedFilename
