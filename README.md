@@ -146,10 +146,10 @@ By default the output is created into *release_file.md* file. You can control th
 
 The output filename will be `MyMilestone2.md` (if the milestone id is 2). To add a separator, include it in `FILENAME_PREFIX`, for example `MyMilestone_`.
 
-#### Filename using v2.0.0+
+#### Filename using v3.1.4+
 ```YAML
 - name: Create Release Notes
-  uses: docker://decathlon/release-notes-generator-action:2.0.1
+  uses: docker://decathlon/release-notes-generator-action:3.1.4
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     FILENAME: ProvidedFilename
